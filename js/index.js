@@ -30,6 +30,7 @@ addItem.onclick = function () {
     console.log('Input needs more characters');
   }
   itemInput.value = '';
+  itemInput.focus();
 };
 
 clearBtn.onclick = () => {

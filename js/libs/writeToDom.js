@@ -4,7 +4,6 @@ export default function writeToDOM(
   domElementIAmGoingToPutHTMLInto,
   theArrayIAmGoingToCreateHTMLFrom
 ) {
-  console.log(theArrayIAmGoingToCreateHTMLFrom);
   domElementIAmGoingToPutHTMLInto.innerHTML = '';
 
   theArrayIAmGoingToCreateHTMLFrom.forEach(function (groceryItem) {
@@ -21,7 +20,6 @@ export default function writeToDOM(
   });
 
   const checkboxes = document.querySelectorAll('.checkbox');
-  console.log(checkboxes);
   checkboxes.forEach(function (checkbox) {
     checkbox.onclick = function () {
       let indexOfItem = theArrayIAmGoingToCreateHTMLFrom.findIndex(function (
@@ -29,10 +27,6 @@ export default function writeToDOM(
       ) {
         return groceryObject.id === parseInt(checkbox.dataset.id);
       });
-
-      console.log(indexOfItem);
-      console.log(theArrayIAmGoingToCreateHTMLFrom[indexOfItem]);
-
       if (theArrayIAmGoingToCreateHTMLFrom[indexOfItem].checked) {
         theArrayIAmGoingToCreateHTMLFrom[indexOfItem].checked = '';
       } else {
@@ -40,6 +34,10 @@ export default function writeToDOM(
       }
 
       saveToLocalStorage('groceryArrayKey', theArrayIAmGoingToCreateHTMLFrom);
+      writeToDOM(
+        domElementIAmGoingToPutHTMLInto,
+        theArrayIAmGoingToCreateHTMLFrom
+      );
     };
   });
 }
