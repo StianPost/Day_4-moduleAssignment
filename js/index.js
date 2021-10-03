@@ -18,6 +18,7 @@ writeToDOM(items, groceryArray);
 
 addItem.onclick = function () {
   let valueOfGroceryInputBox = itemInput.value;
+  let errorMSG = document.querySelector('.errorMSG');
   if (testLengthOfInput(valueOfGroceryInputBox, 3)) {
     let groceryItem = {
       id: groceryArray.length,
@@ -26,8 +27,9 @@ addItem.onclick = function () {
     groceryArray.push(groceryItem);
     saveToLocalStorage('groceryArrayKey', groceryArray);
     writeToDOM(items, groceryArray);
+    errorMSG.innerHTML = ``;
   } else {
-    console.log('Input needs more characters');
+    errorMSG.innerHTML = `Item must be atleast 3 chars long`;
   }
   itemInput.value = '';
   itemInput.focus();
